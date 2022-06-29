@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ApiController extends ApiBaseController
 {
@@ -34,5 +38,41 @@ class ApiController extends ApiBaseController
 
         return $this->ok(compact('expired', 'message', 'voucher'));
 
+    }
+
+    /**
+     * Retorna un JWT segun el documento legal (DNI en el caso de argentina) 
+     * y un PIN de 4 digitos del cliente
+     */
+    public function authenticate(Request $req) {
+
+        if (!$req->legal_doc || !$req->pin) 
+            return $this->error('legal_doc and PIN are required');
+
+        $client = Client::where([
+            'legal_doc' => $req->legal_doc, 
+            'pin'       => $req->pin
+        ])->first();
+
+        if (!$client instanceof Client)
+            return $this->error('Invalid legal_doc or PIN', 401);
+
+        if (!$token = JWTAuth::fromUser($client)) 
+            return $this->error('The credentials are invalid');
+
+        return $this->ok(compact('token'));
+
+    }
+
+    /**
+     * Retorna los vouchers asociados a un cliente, 
+     * se requiere el JWT para solicitar esta información
+     */
+    public function getClientVouchers(Request $req) {
+
+        return $this->ok([
+            'client'    => $req->client->getPersonalData(),
+            'vouchers'  => $req->client->vouchers
+        ]);
     }
 }

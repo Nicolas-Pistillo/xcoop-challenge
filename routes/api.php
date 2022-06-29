@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('vouchers/check', [ApiController::class, 'checkVoucher']);
+
+Route::post('auth/token', [ApiController::class, 'authenticate']);
+
+// Ruta protegida por JWT
+Route::get('client/vouchers', [ApiController::class, 'getClientVouchers'])->middleware('jwt');
+

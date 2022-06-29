@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('profession');
             $table->string('legal_doc');
+            $table->integer('pin');
             $table->timestamps();
         });
     }

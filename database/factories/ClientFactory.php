@@ -17,12 +17,13 @@ class ClientFactory extends Factory
      */
     public function definition()
     {
+        $professions = ['designer', 'medic', 'student', 'developer', 'mechanic', 'gardener'];
+
         return [
             'name'        => $this->faker->name,
-            'profession'  => Arr::random([
-                'designer', 'medic', 'student', 'developer', 'mechanic', 'gardener'
-            ]),
-            'legal_doc'   => $this->faker->numberBetween(40000000,99999999)
+            'profession'  => Arr::random($professions),
+            'legal_doc'   => $this->faker->unique()->numberBetween(40000000,99999999),
+            'pin'         => $this->faker->unique()->numberBetween(1543,9999)
         ];
     }
 }
