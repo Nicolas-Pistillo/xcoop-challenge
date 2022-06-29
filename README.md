@@ -1,6 +1,6 @@
 # Xcoop Challenge
 
-Challenge técnico para proceso de selección de la empresa Xcoop, realizado con Laravel 7, PHP 7.2 y un paquete de cigarrillos Chesterfield.
+Challenge técnico para proceso de selección de la empresa Xcoop, realizado con Laravel 7, PHP 7.2.
 
 ## Instalar las dependencias
 
@@ -28,6 +28,8 @@ php artisan migrate --seed
 
 En mi caso creé un virtual host para apuntar a la raiz de la API en **http://xcoop-challenge/api**, pero para comenzar rápidamente también se puede correr el comando **php artisan serve** para crear un servidor local en **http;//localhost:8000/api**
 
+Para esta ocación, decidi proteger la ruta de vouchers de un cliente usando un metodo de autenticación basado en JWT (Jeison Web Tokens).
+
 ### Check Voucher
 
 Suponiendo que se esta usando la segunda opción en el punto anterior, el primer endpoint se verá de la siguiente forma:
@@ -40,13 +42,25 @@ http://localhost:8000/api/vouchers/check?hash=XXXXX
 
 **Valores de retorno:** Información que indica si el voucher ha vencido o no, además del objeto del voucher en sí.
 
+### Create Token
+
+```
+http://localhost:8000/api/auth/token
+```
+
+**Parametros:** legal_doc y PIN de 4 digitos del cliente
+
+**Valores de retorno:** Si estas 2 credenciales son correctas, se retornara un token JWT
+
 ### Get Client Vouchers
 
 ```
-http://localhost:8000/api/client/{legal_doc}/vouchers
+http://localhost:8000/api/client/vouchers
 ```
 
-**Parametros:** legal_doc (El documento legal del cliente, disponible en la tabla clients como "legal_doc")
+**Parametros:** Ninguno
+
+**Authorization:** Se debe enviar el token generado en el endpoint **Create Token** como un token Bearer en el encabezado de autorizacion. Este token estara asociado directamente con el cliente que nos interesa.
 
 **Valores de retorno:** Información del cliente y sus vouchers relacionados
 
