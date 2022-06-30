@@ -16,7 +16,7 @@ cp .env.example .env
 
 ## Configurar base de datos
 
-En este caso utilice una base de datos MYSQL, para la cual cree un seeder y un factory de clientes y vouchers para generar todos los datos de prueba necesarios.
+En este caso utilice una base de datos MYSQL, para la cual cree un seeder y un factory de clientes y vouchers para generar todos los datos de prueba necesarios. Mas especificamente el seeder generará 20 clientes los cuales poseen 4 vouchers cada uno.
 
 Una vez configurada correctamente la DB, correr el siguiente comando para levantar las migraciones y los seeders:
 
