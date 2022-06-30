@@ -1,6 +1,6 @@
 # Xcoop Challenge
 
-Challenge técnico para proceso de selección de la empresa Xcoop, realizado con Laravel 7, PHP 7.2.
+Challenge técnico para proceso de selección de la empresa Xcoop, realizado con Laravel 9 y PHP 8.
 
 ## Instalar las dependencias
 
