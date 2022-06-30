@@ -38,6 +38,8 @@ Suponiendo que se esta usando la segunda opción en el punto anterior, este prim
 http://localhost:8000/api/vouchers/check?hash=XXXXX
 ```
 
+**Método HTTP:** GET
+
 **Parametros:** hash (El código hash del voucher)
 
 **Valores de retorno:** Información que indica si el voucher ha vencido o no, además del objeto del voucher en sí.
@@ -48,6 +50,8 @@ http://localhost:8000/api/vouchers/check?hash=XXXXX
 http://localhost:8000/api/auth/token
 ```
 
+**Método HTTP:** POST
+
 **Parametros:** legal_doc y PIN de 4 digitos del cliente
 
 **Valores de retorno:** Si estas 2 credenciales son correctas, se retornara un token JWT
@@ -57,6 +61,8 @@ http://localhost:8000/api/auth/token
 ```
 http://localhost:8000/api/client/vouchers
 ```
+
+**Método HTTP:** GET
 
 **Parametros:** Ninguno
 
