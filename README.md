@@ -28,7 +28,7 @@ php artisan migrate --seed
 
 En mi caso creé un virtual host para apuntar a la raiz de la API en **http://xcoop-challenge/api**, pero para comenzar rápidamente también se puede correr el comando **php artisan serve** para crear un servidor local en **http;//localhost:8000/api**
 
-Para esta ocación, decidi proteger la ruta de vouchers de un cliente usando un metodo de autenticación basado en JWT (Jeison Web Tokens).
+Para esta ocación, decidi proteger la ruta de vouchers de un cliente usando un metodo de autenticación basado en JWT (JSON Web Tokens).
 
 ### Check Voucher
 
