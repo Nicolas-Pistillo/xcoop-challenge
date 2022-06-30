@@ -32,7 +32,7 @@ Para esta ocación, decidi proteger la ruta de vouchers de un cliente usando un 
 
 ### Check Voucher
 
-Suponiendo que se esta usando la segunda opción en el punto anterior, el primer endpoint se verá de la siguiente forma:
+Suponiendo que se esta usando la segunda opción en el punto anterior, este primer endpoint que no requiere autenticación por JWT se encargara de devolver el estado activo de un voucher, y se verá de la siguiente forma:
 
 ```
 http://localhost:8000/api/vouchers/check?hash=XXXXX
